@@ -1,0 +1,107 @@
+#include <iostream>
+using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
+
+ListNode* Init(int x) { 
+    int tmp;
+    if (x <= 0) {cout<<"Init()参数错误";return nullptr;} // 如果长度为0或负数，直接返回
+	
+    ListNode *current = nullptr;
+	ListNode *head=current;
+    for (int i = 1; i <= x; i++) {
+        cout << "请输入节点:" << i << "的值: ";
+        cin >> tmp;
+	    if(i==1) {
+		    current=new ListNode(tmp);
+			head=current;	
+		}
+        else{
+  			current->next= new ListNode(tmp); 
+        	current = current->next; // 移动到下一个节点
+		}
+    }
+    return head; 
+}
+int Length(ListNode* head) { //长度
+	int i=0;
+	while(head!=nullptr){
+ 		head=head->next;
+ 		i++;
+ 	}
+   return i; 
+}
+void Print(ListNode* head){ //输出
+	if(head==nullptr){
+		cout<<"nullptr"<<endl;
+		return;
+	} 
+	cout<<head->val<<"->";
+	return Print(head->next);
+}
+void Insert(ListNode *head,int n,int i){  //插入
+	if(n>Length(head)){
+		cout<<"超过最大值"<<endl;
+		return;
+	}
+	ListNode *p=new ListNode(i);
+	for(i=1;i<n;i++){
+		head=head->next;
+	}
+ 	p->next=head->next;
+  	head->next=p;
+}              
+ListNode* Access(ListNode *head,int index){/* 访问链表中索引为 index 的节点 */
+	if(index<1) {cout<<"Access()参数错误";return nullptr;}
+	else
+	{
+		for(int i=1;i<index;i++){ //当index为1时，这个for循环语句将不会执行，即i<index为假
+			head=head->next;
+		}
+		return head;
+	}
+
+}
+int Search(ListNode *head,int target) {/* 在链表中查找值为 target 的节点 */
+	int i=1;
+	while(head!=nullptr){
+		if(head->val==target) return i;
+ 		head=head->next;
+ 		i++;
+ 	}
+ 	cout<<"没找到";
+
+} 
+struct Queue{
+	ListNode *head=nullptr;
+	ListNode *rear=nullptr;
+	Queue(int x){
+		this->head=Init(x);
+		this->rear=Access(this->head,Length(this->head));
+	}
+	void Push(int x){
+		ListNode *P=new ListNode(x);
+		this->rear->next=P;//此处需要将P节点的地址赋值给rear节点！ 
+		rear=P;
+		P->next=nullptr;
+	}
+	void Pop(){
+		ListNode *tmp=this->head;
+		this->head=this->head->next;
+		delete tmp;
+	}
+};
+int main(){
+	Queue q1(4);
+//	cout<<q1.rear;
+	Print(q1.head);
+	q1.Push(6);
+	Print(q1.head);
+	q1.Pop();
+	Print(q1.head);
+	cout<<q1.rear->val;
+} 
