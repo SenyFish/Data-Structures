@@ -8,32 +8,32 @@ struct ListNode {
         next = nullptr;
     }
 };
-/* ÔÚÁ´±íµÄ½Úµã n0 Ö®ºó²åÈë½Úµã P */
+/* åœ¨é“¾è¡¨çš„èŠ‚ç‚¹ n0 ä¹‹åæ’å…¥èŠ‚ç‚¹ P */
 void insert(ListNode *n0, ListNode *P) {
-    ListNode *n1 = n0->next; //n1µÄÖµËæ×ÅĞÎ²În0µÄ±ä»¯¶ø±ä»¯
+    ListNode *n1 = n0->next; //n1çš„å€¼éšç€å½¢å‚n0çš„å˜åŒ–è€Œå˜åŒ–
     P->next = n1;
     n0->next = P;
 };
-/* É¾³ıÁ´±íµÄ½Úµã n0 Ö®ºóµÄÊ×¸ö½Úµã */
+/* åˆ é™¤é“¾è¡¨çš„èŠ‚ç‚¹ n0 ä¹‹åçš„é¦–ä¸ªèŠ‚ç‚¹ */
 void remove(ListNode *n0) {
     if (n0->next == nullptr)
-        return; //½áÊøº¯ÊıÖ´ĞĞ 
+        return; //ç»“æŸå‡½æ•°æ‰§è¡Œ 
     // n0 -> P -> n1
     ListNode *P  = n0->next;
     ListNode *n1 = P->next;
     n0->next = n1;
     delete P;
 } 
-/* ·ÃÎÊÁ´±íÖĞË÷ÒıÎª index µÄ½Úµã */
-ListNode *access(ListNode *head, int index) { //ÕâÀïµÄListNode *access¾Í´ú±í·µ»ØÖµµÄÀàĞÍÊÇListNodeÖ¸Õë 
+/* è®¿é—®é“¾è¡¨ä¸­ç´¢å¼•ä¸º index çš„èŠ‚ç‚¹ */
+ListNode *access(ListNode *head, int index) { //è¿™é‡Œçš„ListNode *accesså°±ä»£è¡¨è¿”å›å€¼çš„ç±»å‹æ˜¯ListNodeæŒ‡é’ˆ 
     for (int i = 0; i < index; i++) {
         if (head == nullptr)
             return nullptr;
-        head = head->next; //¿ÉÒÔÀí½âÎªn1=n2 ´ËÊ±headµÄÖµÊÇn2µÄµØÖ·,ÒÀ´ËÀàÍÆ 
+        head = head->next; //å¯ä»¥ç†è§£ä¸ºn1=n2 æ­¤æ—¶headçš„å€¼æ˜¯n2çš„åœ°å€,ä¾æ­¤ç±»æ¨ 
     }
     return head; 
 }
-/* ÔÚÁ´±íÖĞ²éÕÒÖµÎª target µÄÊ×¸ö½Úµã */
+/* åœ¨é“¾è¡¨ä¸­æŸ¥æ‰¾å€¼ä¸º target çš„é¦–ä¸ªèŠ‚ç‚¹ */
 int find(ListNode *head, int target) {
     int index = 0;
     while (head != nullptr) { 
@@ -58,15 +58,14 @@ int main()
     n3->next = n4;
     insert(n2,P); 
 	remove(n2);
-	ListNode *temp=access(n0,3); //·ÃÎÊ½Úµã
-	//cout <<"½ÚµãµÄÖµÊÇ"<<temp->val;
-    cout<<find(n0,3);//²éÕÒ½Úµã 
-	 
-    /*Êä³ö¸÷¸ö½ÚµãµÄÖµ*/ 
-   /* ListNode *current = n0; //°Ñn0(Á´±í¿ªÍ·)µÄµØÖ·¸³Öµ¸øcurrentÕâ¸öÖ¸Õë 
+	ListNode *temp=access(n0,3); //è®¿é—®èŠ‚ç‚¹
+	//cout <<"èŠ‚ç‚¹çš„å€¼æ˜¯"<<temp->val;
+    cout<<find(n0,3);//æŸ¥æ‰¾èŠ‚ç‚¹ 
+    /*è¾“å‡ºå„ä¸ªèŠ‚ç‚¹çš„å€¼*/ 
+   /* ListNode *current = n0; //æŠŠn0(é“¾è¡¨å¼€å¤´)çš„åœ°å€èµ‹å€¼ç»™currentè¿™ä¸ªæŒ‡é’ˆ 
     while (current!= nullptr) {
         cout << current->val << " ";
-        current = current->next; //°ÑÏÂÒ»¸ö½ÚµãµÄµØÖ·¸³Öµ¸ø×Ô¼º£¬Ò²¾ÍÊÇn0±än1 
+        current = current->next; //æŠŠä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„åœ°å€èµ‹å€¼ç»™è‡ªå·±ï¼Œä¹Ÿå°±æ˜¯n0å˜n1 
     }
     cout << endl;*/
 }
