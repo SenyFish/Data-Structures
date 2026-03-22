@@ -4,15 +4,14 @@ using namespace std;
 struct ListNode {
     int val;
     ListNode* next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
+    ListNode(int x) : val(x), next(nullptr) {} //初始化链表 ListNode->val
+}; 
 
-ListNode* Init(int x) { 
+ListNode* Init(int x) { //初始化函数
     int tmp;
     if (x <= 0) {cout<<"Init()参数错误";return nullptr;} // 如果长度为0或负数，直接返回
-	
-    ListNode *current = nullptr;
-	ListNode *head=current;
+    ListNode *current = nullptr; 
+	ListNode *head = current; 
     for (int i = 1; i <= x; i++) {
         cout << "请输入节点:" << i << "的值: ";
         cin >> tmp;
@@ -25,9 +24,9 @@ ListNode* Init(int x) {
         	current = current->next; // 移动到下一个节点
 		}
     }
-    return head; 
+    return head; //最后返回头节点
 }
-int Length(ListNode* head) { //长度
+int Length(ListNode* head) { //长度，返回长度
 	int i=0;
 	while(head!=nullptr){
  		head=head->next;
@@ -55,7 +54,7 @@ void Insert(ListNode *head,int n,int i){  //插入
  	p->next=head->next;
   	head->next=p;
 }              
-ListNode* Access(ListNode *head,int index){/* 访问链表中索引为 index 的节点 */
+ListNode* Access(ListNode *head,int index){//访问链表中索引为 index 的节点
 	if(index<1) {cout<<"Access()参数错误";return nullptr;}
 	else
 	{
@@ -74,14 +73,14 @@ int Search(ListNode *head,int target) {/* 在链表中查找值为 target 的节
  		i++;
  	}
  	cout<<"没找到";
-
+ 	return 0;
 } 
 struct Queue{
 	ListNode *head=nullptr;
-	ListNode *rear=nullptr;
+	ListNode *rear=nullptr;//尾节点
 	Queue(int x){
-		this->head=Init(x);
-		this->rear=Access(this->head,Length(this->head));
+		this->head=Init(x);//将头节点指针赋值
+		this->rear=Access(this->head,Length(this->head));//将尾节点指针赋值，因为此处长度是链表总长度
 	}
 	void Push(int x){
 		ListNode *P=new ListNode(x);
@@ -89,7 +88,7 @@ struct Queue{
 		rear=P;
 		P->next=nullptr;
 	}
-	void Pop(){
+	void Pop(){ //弹出
 		ListNode *tmp=this->head;
 		this->head=this->head->next;
 		delete tmp;
