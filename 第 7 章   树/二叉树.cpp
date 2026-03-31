@@ -7,62 +7,35 @@ struct TreeNode {
     TreeNode *right;  // 右子节点指针
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
-//TreeNode* Init(int x){//输入要初始化的长度
-//	if(x<=0)
-//		retrun nullptr;//输入
-//	TreeNode *left=nullptr;
-//	TreeNode *right=left;
-//	for(i=1;i<=x;i++){
-//		TreeNode *
-//	}
-//	
-//}
-void Insert(TreeNode *head,int val,char flag_head,char flag_current){
-	if(head==nullptr){
-		cout<<"head is null";
+TreeNode* Init(TreeNode *root,int n){
+	if(n <= 0)
+		return root; //最终返回值
+	int x;
+	cout<<"请输入节点的值"; cin>>x;
+	
+	if(x < root->val){
+		root->left = new TreeNode(x);
+		root->left = Init(root->left,--n);
+	}
+	else if(x > root->val){
+		root->right = new TreeNode(x);
+		root->right = Init(root->right,--n);	
+	}
+//	else
+//		return nullptr;
+	return root; //每一层的返回值
+}
+void Print(TreeNode *root){
+	if(root == nullptr)
 		return;
-	}
-	TreeNode* current=new TreeNode(val);
-	if(flag_head=='L'&&flag_current=='R'){ //如果要插入到头节点的左节点
-		TreeNode* tmp = head->left;//获取原本左节点的指针并暂存
-		head->left = current;
-		current->right = tmp;
-	}
-	else if(flag_head=='R'&&flag_current=='L'){
-		TreeNode* tmp = head->right;
-		head->right = current;
-		current->left = tmp;
-	}
-	else if(flag_head=='R'&&flag_current=='R'){
-		TreeNode* tmp=head->right;
-		head->right = current;
-		current->right = tmp;
-	}
-	else if(flag_head=='L'&&flag_current=='L'){
-		TreeNode* tmp=head->left;
-		head->left = current;
-		current->left = tmp;
-	}	
-	else 
-	{
-		delete current;
-		cout<<"null";
-	};
+	cout<<root->val<<"-";
+	Print(root->left);
+	Print(root->right);
 }
 int main(){
-	TreeNode *n1 = new TreeNode(1);
-	TreeNode *n2 = new TreeNode(2);
-	TreeNode *n3 = new TreeNode(3);
-	TreeNode *n4 = new TreeNode(4);
-	TreeNode *n5 = new TreeNode(5);
-	TreeNode *n6 = new TreeNode(6);
-	TreeNode *n7 = new TreeNode(7);
-	n1->left=n2;
-	n1->right=n3;
-	n2->left=n4;
-	n2->right=n5;
-	n3->left=n6;
-	n3->right=n7;
-	Insert(n1,9,'L','R');
-	return 0;
+	TreeNode *root = new TreeNode(10);
+	root = Init(root,3);
+//	cout<<root->val;
+//	Print(root);  
+	cout<<root->val<<endl<<root->left->val<<endl<<root->left->right->val<<endl<<root->left->right->right->val;
 }

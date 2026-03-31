@@ -75,14 +75,14 @@ int Search(ListNode *head,int target) {/* 在链表中查找值为 target 的节
  	cout<<"没找到";
  	return 0;
 } 
-struct Queue{
+struct Queue{ //基于链表
 	ListNode *head=nullptr;
 	ListNode *rear=nullptr;//尾节点
 	Queue(int x){
 		this->head=Init(x);//将头节点指针赋值
 		this->rear=Access(this->head,Length(this->head));//将尾节点指针赋值，因为此处长度是链表总长度
 	}
-	void Push(int x){
+	void Push(int x){ //入队
 		ListNode *P=new ListNode(x);
 		this->rear->next=P;//此处需要将P节点的地址赋值给rear节点！ 
 		rear=P;
@@ -92,6 +92,12 @@ struct Queue{
 		ListNode *tmp=this->head;
 		this->head=this->head->next;
 		delete tmp;
+	}
+	bool Empty(){
+		if(this->head==nullptr)
+			return 0;
+		else
+			return 1;
 	}
 };
 int main(){
