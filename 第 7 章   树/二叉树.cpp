@@ -25,7 +25,7 @@ TreeNode* Init(TreeNode *root,int n){
 //		return nullptr;
 	return root; //每一层的返回值
 }
-void Print(TreeNode *root){
+void Print(TreeNode *root){ 
 	if(root == nullptr)
 		return;
 	cout<<root->val<<"-";

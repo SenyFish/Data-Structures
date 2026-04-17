@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <fstream> //文件输入输出库，用来提供测试数据
 using namespace std;
 class GraphAdjMat{
 private:
@@ -57,7 +56,7 @@ public:
 	void addVertex(int vertex_val){ //添加顶点
 		v1.push_back(vertex_val); //
 		cout<<"==================="<<"增加顶点："<<vertex_val<<endl;
-		int index = v1.size()-1;
+		const int index = v1.size()-1;
 		v2.resize(v1.size(),vector<int>(v1.size()-1));//预留空间 新增一行
 		for(int i=0;i<v1.size();i++)
 			v2[i].push_back(0);
@@ -93,7 +92,6 @@ public:
 };
 
 int main(){
-    //提供测试数据，模拟手动输入
 	GraphAdjMat G1;
 	G1.test();
 	G1.addEdgeByIndex(0,2);
