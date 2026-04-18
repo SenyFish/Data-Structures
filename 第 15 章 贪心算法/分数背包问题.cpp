@@ -18,7 +18,7 @@ void fractionalKnapsack(vector<Items> &i1,int cap){
 		max_val += i1[i].val;
 		i++;
 	}
-	if(i<i1.size()&&cap>0) //思考为什么要加上i<size()判断条件
+	if(i<i1.size()&&cap>0) //思考为什么要加上i<i1.size()判断条件
 		max_val += i1[i].unit_val * cap;
 	cout<<max_val;
 }
