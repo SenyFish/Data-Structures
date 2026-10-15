@@ -55,7 +55,7 @@ public:
 	}
 	void addVertex(int vertex_val){ //添加顶点
 		v1.push_back(vertex_val); //
-		cout<<"==================="<<"增加顶点："<<vertex_val<<endl;
+		cout<<"==================="<<endl<<"增加顶点："<<vertex_val<<endl;
 		const int index = v1.size()-1;
 		v2.resize(v1.size(),vector<int>(v1.size()-1));//预留空间 新增一行
 		for(int i=0;i<v1.size();i++)

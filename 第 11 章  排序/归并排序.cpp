@@ -1,24 +1,14 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-void mergesort(int &a){
-	static vector<int> v1;
-	static vector<int> v2;
-	static int length = sizeof(a)/sizeof(a[0]);
-	static int j = length - 1;
-	static int i = 0;
-	while (i<=j) {
-		if(left>=i) //当左数组
-			return;
-		if(right>=j)
-			return;
-		left = mid - 1;
-		right = mid;
-		v1.push_back()
-		v2.push_back()
-	}
+void selectionSort(vector<int> &v1) {
+	static int min=v1[0];
+	for (int i=0;i<v1.size();i++)
+		
+		if (v1[i]<min)
+			min=v1[i];
 
 }
 int main(){
-	int a[10]={1,3,6,8,12,15,23,26,31,35};
+	vector<int> v1={4,1,3,1,5,2};
 } 
